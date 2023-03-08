@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Комментарии</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+  <main>
+    <section class="section-comments">
+      <div class="container">
+        <div class="section-comments__form comment">
+          <h2 class="comment__heading heading">
+            Добавить комментарий
+          </h2>
+          <form action="./" class="comment__form form">
+            <div class="form__info">
+              <div class="form__input">
+                <input type="text" name="name" placeholder="Ваше имя *" required>
+              </div>
+              <div class="form__input input-date">
+                <input type="date" name="date">
+              </div>
+            </div>
+            <div class="form__textarea">
+              <textarea name="text" placeholder="Ваш комментарий *" required></textarea>
+            </div>
+            <div class="form__btn btn">
+              <button type="submit"><span>Отправить комментарий</span></button>
+            </div>
+          </form>
+        </div>
+
+        <div class="section-comments__comments comments">
+          <h2 class="comments__heading">
+            Комментарии:
+          </h2>
+          <ul class="comments__list">
+            <li class="comments__item">
+              <div class="comments__weapper wrapper">
+                <div class="wrapper__header header-comment">
+                  <div class="header-comment__content">
+                    <div class="header-comment__user">
+                      Вася Пупкин
+                    </div>
+                    <div class="header-comment__date date">
+                      <span class="date__number">Вчера</span>
+                      <span class="date__slash">|</span>
+                      <span class="date__time">16:23</span>
+                    </div>
+                  </div>
+                  <img src="./img/user.png" alt="Изображение пользователя - шаблон" class="header__img">
+                </div>
+                <p class="wrapper__comment">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat quam exercitationem ratione quas
+                  laudantium modi vitae, sint, illo repellendus temporibus necessitatibus voluptate optio quidem
+                  architecto est voluptatibus, placeat commodi? Sunt.
+                </p>
+                <div class="wrapper__icons icons">
+                  <ul class="icons__list">
+                    <li class="icons__item">
+                      <img src="./img/icons/heart.svg" alt="Иконка сердца" class="icons__heart">
+                    </li>
+                    <li class="icons__item">
+                      <img src="./img/icons/trash-bin.svg" alt="Иконка корзины" class="icons__trash-bin">
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src=".js/script.js"></script>
+</body>
+
+</html>

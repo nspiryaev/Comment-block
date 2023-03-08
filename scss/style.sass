@@ -1,0 +1,197 @@
+@font-face
+  font-family: 'Roboto'
+  font-style: normal
+  font-weight: 400
+  src: url('../fonts/roboto-v30-latin_cyrillic-regular.woff2'), url('../fonts/roboto-v30-latin_cyrillic-regular.woff')
+
+@font-face
+  font-family: 'Roboto'
+  font-style: bold
+  font-weight: 700
+  src: url('../fonts/roboto-v30-latin_cyrillic-700.woff2'), url('../fonts/roboto-v30-latin_cyrillic-700.woff')
+
+@import "_normalize.scss"
+@import "_reset.scss"
+
+*
+  box-sizing: border-box
+
+html
+  font-family: 'Roboto', sans-serif
+
+a
+  text-decoration: none
+
+.container
+  margin: 0 auto
+  padding: 0 15px
+  max-width: 1200px
+  @media (max-width:430px)
+    max-width: 100%
+
+.section-comments
+  background-image: url('../img/bg.jpg')
+  background-repeat: repeat
+  background-color: #808080
+  min-height: 100vh
+  &__form
+    margin-bottom: 30px
+
+.comment
+  &__heading
+    margin-bottom: 25px
+    padding-top: 50px
+    font-size: 32px
+    line-height: 1
+    font-weight: 700
+    color: white
+    @media (max-width:430px)
+      margin-bottom: 20px
+      padding-top: 30px
+
+.form
+  max-width: 100%
+  &__info
+    display: flex
+    margin-bottom: 10px
+    @media (max-width:430px)
+      flex-direction: column
+  &__input
+    margin-right: 10px
+    @media (max-width:430px)
+      margin-bottom: 10px
+      margin-right: 0
+      &:last-child
+        margin-bottom: 0
+    &:last-child
+      margin-right: 0
+    input
+      width: 230px
+      padding-left: 20px
+      height: 40px
+      border: none
+      border-radius: 5px
+      color: #6F6E6E
+      font-weight: 400
+      font-size: 20px
+      line-height: 1
+      background-color: #D9D9D9
+      @media (max-width:430px)
+        width: 100%
+      &:focus
+        border: none
+        outline: 2px solid #525050
+  &__textarea
+    margin-bottom: 10px
+    textarea
+      padding: 10px 0 0 20px
+      height: 130px
+      width: 400px
+      border: none
+      border-radius: 5px
+      color: #6F6E6E
+      font-weight: 400
+      font-size: 20px
+      line-height: 1
+      background-color: #D9D9D9
+      @media (max-width:430px)
+        width: 100%
+      &:focus
+        border: none
+        outline: 2px solid #525050
+
+.input-date
+  input
+    width: 160px
+    @media (max-width:430px)
+      width: 100%
+
+.btn
+  button
+    padding: 16px 20px
+    border: none
+    border-radius: 5px
+    font-weight: 700
+    font-size: 20px
+    line-height: 23px
+    text-transform: uppercase
+    background-color: #6F6E6E
+    color: #eae8e8
+    transition: background-color .3s ease
+    &:hover
+      background-color: #525050
+      cursor: pointer
+
+.comments
+  &__heading
+    margin-bottom: 20px
+    font-weight: 700
+    font-size: 20px
+    line-height: 23px
+    color: white
+
+.wrapper
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  margin-bottom: 30px
+  padding: 10px 10px 10px 0
+  max-width: 500px
+  min-height: 200px
+  border-radius: 5px
+  background-color: #6A6A6A
+  &__header
+    margin-bottom: 10px
+  &__comment
+    margin-bottom: 10px
+    margin-left: 25px
+    font-weight: 400
+    font-size: 14px
+    line-height: 16px
+    color: white
+
+.header-comment
+  display: flex
+  justify-content: space-between
+  align-items: center
+  &__content
+  &__user
+    padding: 0 20px 0 25px
+    min-width: 200px
+    height: 30px
+    background: linear-gradient(180deg, #9F0202 0%, #DB2E2E 100%)
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
+    border-radius: 0px 100px 100px 0px
+    font-weight: 700
+    font-size: 18px
+    line-height: 30px
+    color: #EAE8E8
+
+.date
+  padding-left: 25px
+  width: 75%
+  height: 23px
+  border-radius: 0px 20px 100px 0px
+  font-weight: 400
+  font-size: 14px
+  line-height: 23px
+  color: #EAE8E8
+  background: #525050
+
+.icons
+  &__list
+    display: flex
+    align-items: center
+    justify-content: flex-end
+  &__item
+    transition: transform .3s ease
+    &:hover
+      cursor: pointer
+      transform: scale(1.1)
+  &__heart
+    margin-right: 10px
+    height: 22px
+    width: 22px
+  &__trash-bin
+    height: 24px
+    width: 24px
