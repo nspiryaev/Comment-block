@@ -17,17 +17,17 @@
           <h2 class="comment__heading heading">
             Добавить комментарий
           </h2>
-          <form action="./" class="comment__form form">
+          <form action="#" class="comment__form form">
             <div class="form__info">
               <div class="form__input">
-                <input type="text" name="name" placeholder="Ваше имя *" required>
+                <input id="name" type="text" name="name" placeholder="Ваше имя *">
               </div>
               <div class="form__input input-date">
-                <input type="date" name="date">
+                <input id="date" type="date" name="date">
               </div>
             </div>
             <div class="form__textarea">
-              <textarea name="text" placeholder="Ваш комментарий *" required></textarea>
+              <textarea id="textarea" name="text" placeholder="Ваш комментарий *"></textarea>
             </div>
             <div class="form__btn btn">
               <button type="submit"><span>Отправить комментарий</span></button>
@@ -40,7 +40,7 @@
             Комментарии:
           </h2>
           <ul class="comments__list">
-            <li class="comments__item">
+            <!-- <li class="comments__item">
               <div class="comments__weapper wrapper">
                 <div class="wrapper__header header-comment">
                   <div class="header-comment__content">
@@ -71,13 +71,13 @@
                   </ul>
                 </div>
               </div>
-            </li>
+            </li> -->
           </ul>
         </div>
       </div>
     </section>
   </main>
-  <script src=".js/script.js"></script>
+  <script src="./js/script.js"></script>
 </body>
 
 </html>
