@@ -544,10 +544,10 @@ a {
 }
 .wrapper__comment {
   margin-bottom: 10px;
-  margin-left: 25px;
+  padding: 25px;
   font-weight: 400;
   font-size: 14px;
-  line-height: 16px;
+  line-height: 150%;
   color: white;
 }
 
@@ -587,6 +587,7 @@ a {
   justify-content: flex-end;
 }
 .icons__item {
+  position: relative;
   transition: transform 0.3s ease;
 }
 .icons__item:hover {
@@ -602,6 +603,25 @@ a {
   height: 24px;
   width: 24px;
 }
+.icons__sticker {
+  position: absolute;
+  top: -5px;
+  left: -12px;
+}
+
+.sticker {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.9);
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 18px;
+  color: #9F0202;
+}
 
 .error input {
   outline: 2px solid #9F0202;
@@ -613,5 +633,12 @@ a {
 .error-label {
   display: block;
   padding-top: 10px;
+  max-width: 230px;
+  font-size: 14px;
+  line-height: 130%;
   color: #9F0202;
+}
+
+.is-active path {
+  fill: #9F0202;
 }/*# sourceMappingURL=style.css.map */
