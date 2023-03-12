@@ -603,7 +603,10 @@ a {
   width: 24px;
 }
 
-.error {
+.error input {
+  outline: 2px solid #9F0202;
+}
+.error textarea {
   outline: 2px solid #9F0202;
 }
 

@@ -7,7 +7,7 @@ form.addEventListener('submit', function (event) {
     commentText = form.querySelector('#textarea'),
     commentDate = form.querySelector('#date');
 
-  if (formValidation(this, userName, commentText) == true) {
+  if (formValidation(this, userName, commentText) === true) {
 
     createComment(userName, commentText, commentDate);
     likeComment();
@@ -99,63 +99,41 @@ function likeComment() {
   });
 }
 
-
 function formValidation(form, userName, commentText) {
   let result = true;
-  const dataInputs = document.querySelectorAll('.data-input');
+  const allInputs = [userName, commentText];
 
-  if (userName.value == "") {
-    removeErrorInput(userName);
-    createErrorInput(userName, 'Поле не заполнено!');
-    result = false;
-  }
+  for (let input of allInputs) {
+    removeError(input);
 
-  if (commentText.value == "") {
-    removeErrorTextarea(commentText);
-    createErrorTextarea(commentText, 'Поле не заполнено!');
-    result = false;
-  }
-
-  function createErrorInput(userName, text) {
-    const parent = userName.parentNode,
-      errorLabel = document.createElement('label');
-
-    errorLabel.classList.add('error-label');
-    errorLabel.textContent = text;
-    userName.classList.add('error');
-    parent.append(errorLabel);
-  }
-
-  function createErrorTextarea(commentText, text) {
-    const parent = commentText.parentNode,
-      errorLabel = document.createElement('label');
-
-    errorLabel.classList.add('error-label');
-    errorLabel.textContent = text;
-    commentText.classList.add('error');
-    parent.append(errorLabel);
-  }
-
-  function removeErrorInput(userName) {
-    const parent = userName.parentNode;
-
-    console.log(parent)
-
-    if (userName.classList.contains('error')) {
-      document.querySelector('.error-label').remove();
-      userName.classList.remove('error');
+    if (input.dataset.required === "true") {
+      if (input.value === "") {
+        createError(input, 'Поле не заполнено!');
+        result = false;
+      }
     }
   }
 
-  function removeErrorTextarea(commentText) {
-    if (commentText.classList.contains('error')) {
-      document.querySelector('.error-label').remove();
-      commentText.classList.remove('error');
-    }
+  function createError(input, text) {
+    const parent = input.parentNode;
+    const errorLabel = document.createElement('label');
+
+    errorLabel.classList.add('error-label');
+    errorLabel.textContent = text;
+
+    parent.classList.add('error');
+    parent.append(errorLabel);
+
   }
 
+  function removeError(input) {
+    const parent = input.parentNode;
+
+    if (parent.classList.contains('error')) {
+      parent.querySelector('.error-label').remove()
+      parent.classList.remove('error')
+    }
+  }
 
   return result;
 }
-
-
