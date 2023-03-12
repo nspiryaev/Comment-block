@@ -20,7 +20,6 @@ form.addEventListener('submit', function (event) {
   }
 });
 
-
 function createComment(userName, commentText, commentDate) {
   const ul = document.querySelector('.comments__list');
 
@@ -52,9 +51,8 @@ function createComment(userName, commentText, commentDate) {
 
   const divDate = document.createElement('div');
   divDate.classList.add('header-comment__date', 'date');
+  divDate.textContent = getDate(commentDate);
   divContent.append(divDate);
-
-  // Здесь должно быть создание span с датами
 
   const pComment = document.createElement('p');
   pComment.classList.add('wrapper__comment');
@@ -94,7 +92,6 @@ function deleteComment() {
 function likeComment() {
   const likeHearts = document.querySelectorAll('.icons__heart'),
     likeCounts = document.querySelectorAll('.sticker');
-
 
   likeHearts.forEach((heart, index) => {
     heart.onclick = function () {
@@ -163,3 +160,32 @@ function formValidation(form, userName, commentText) {
 
   return result;
 }
+
+function getDate(commentDate) {
+  let customDate = new Date(commentDate.value);
+  const yesterday = new Date(Date.now() - 86400000),
+    currentDate = new Date(),
+    currentHour = currentDate.getHours(),
+    currentMinute = currentDate.getMinutes(),
+    currentSecond = currentDate.getSeconds(),
+    userYears = customDate.getFullYear(),
+    userMonth = customDate.getMonth(),
+    userDate = customDate.getDate();
+
+  commentDate.value ? customDate = new Date(userYears, userMonth, userDate, currentHour, currentMinute, currentSecond) : customDate = currentDate;
+
+  if (Date.parse(customDate) === Date.parse(yesterday)) {
+    return `Вчера | ${addLeadingZero(customDate.getHours())}:${addLeadingZero(customDate.getMinutes())}`;
+  } else if (Date.parse(customDate) === Date.parse(currentDate)) {
+    return `Сегодня | ${addLeadingZero(customDate.getHours())}:${addLeadingZero(customDate.getMinutes())}`;
+  } else {
+    return `${addLeadingZero(customDate.getDate())}.${addLeadingZero(customDate.getMonth())}.${customDate.getFullYear()} | ${addLeadingZero(customDate.getHours())}:${addLeadingZero(customDate.getMinutes())}`;
+  }
+
+  function addLeadingZero(num) {
+    return (num < 10) ? '0' + num : '' + num;
+  }
+
+}
+
+
