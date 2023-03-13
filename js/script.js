@@ -1,5 +1,6 @@
 const form = document.querySelector('.form');
 
+
 form.addEventListener('submit', function (event) {
   event.preventDefault();
 
@@ -7,20 +8,20 @@ form.addEventListener('submit', function (event) {
     commentText = form.querySelector('#textarea'),
     commentDate = form.querySelector('#date');
 
-  if (formValidation(this, userName, commentText) === true) {
-
-    createComment(userName, commentText, commentDate);
-    likeComment();
-    deleteComment();
-
-    userName.value = '';
-    commentDate.value = '';
-    commentText.value = '';
-
+  if (!formValidation(userName, commentText)) {
+    return;
   }
+
+  addComment(userName, commentText, commentDate);
+  likeComment();
+  deleteComment();
+
+  userName.value = '';
+  commentDate.value = '';
+  commentText.value = '';
 });
 
-function createComment(userName, commentText, commentDate) {
+function addComment(userName, commentText, commentDate) {
   const ul = document.querySelector('.comments__list');
 
   const li = document.createElement('li');
@@ -104,7 +105,7 @@ function likeComment() {
   });
 }
 
-function formValidation(form, userName, commentText) {
+function formValidation(userName, commentText) {
   let result = true;
   const allInputs = [userName, commentText];
 
@@ -135,30 +136,35 @@ function formValidation(form, userName, commentText) {
       }
     }
 
-  }
-
-  function createError(input, text) {
-    const parent = input.parentNode;
-    const errorLabel = document.createElement('label');
-
-    errorLabel.classList.add('error-label');
-    errorLabel.textContent = text;
-
-    parent.classList.add('error');
-    parent.append(errorLabel);
-
-  }
-
-  function removeError(input) {
-    const parent = input.parentNode;
-
-    if (parent.classList.contains('error')) {
-      parent.querySelector('.error-label').remove()
-      parent.classList.remove('error')
+    input.oninput = () => {
+      if (input.value !== "") {
+        removeError(input);
+      }
     }
+
   }
 
   return result;
+}
+
+function createError(input, text) {
+  const parent = input.parentNode;
+  const errorLabel = document.createElement('label');
+
+  errorLabel.classList.add('error-label');
+  errorLabel.textContent = text;
+
+  parent.classList.add('error');
+  parent.append(errorLabel);
+}
+
+function removeError(input) {
+  const parent = input.parentNode;
+
+  if (parent.classList.contains('error')) {
+    parent.querySelector('.error-label').remove()
+    parent.classList.remove('error')
+  }
 }
 
 function getDate(commentDate) {
@@ -179,13 +185,12 @@ function getDate(commentDate) {
   } else if (Date.parse(customDate) === Date.parse(currentDate)) {
     return `Сегодня | ${addLeadingZero(customDate.getHours())}:${addLeadingZero(customDate.getMinutes())}`;
   } else {
-    return `${addLeadingZero(customDate.getDate())}.${addLeadingZero(customDate.getMonth())}.${customDate.getFullYear()} | ${addLeadingZero(customDate.getHours())}:${addLeadingZero(customDate.getMinutes())}`;
+    return `${addLeadingZero(customDate.getDate())}.${addLeadingZero(customDate.getMonth() + 1)}.${customDate.getFullYear()} | ${addLeadingZero(customDate.getHours())}:${addLeadingZero(customDate.getMinutes())}`;
   }
+}
 
-  function addLeadingZero(num) {
-    return (num < 10) ? '0' + num : '' + num;
-  }
-
+function addLeadingZero(num) {
+  return (num < 10) ? '0' + num : '' + num;
 }
 
 
