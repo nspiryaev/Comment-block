@@ -1,20 +1,17 @@
-const form = document.querySelector('.form');
+const elForm = document.querySelector('.form');
 
-
-form.addEventListener('submit', function (event) {
+elForm.addEventListener('submit', function (event) {
   event.preventDefault();
 
-  let userName = form.querySelector('#name'),
-    commentText = form.querySelector('#textarea'),
-    commentDate = form.querySelector('#date');
+  let userName = elForm.querySelector('#name'),
+    commentText = elForm.querySelector('#textarea'),
+    commentDate = elForm.querySelector('#date');
 
-  if (!formValidation(userName, commentText)) {
-    return;
-  }
+  if (!formValidation(userName, commentText)) return;
 
   addComment(userName, commentText, commentDate);
   likeComment();
-  deleteComment();
+  removeComment();
 
   userName.value = '';
   commentDate.value = '';
@@ -79,28 +76,28 @@ function addComment(userName, commentText, commentDate) {
   divWrapper.append(divIcons);
 }
 
-function deleteComment() {
-  let comments = document.querySelectorAll('.comments__item'),
-    trashBins = document.querySelectorAll('.icons__trash-bin');
+function removeComment() {
+  const elComments = document.querySelectorAll('.comments__item'),
+    elTrashBins = document.querySelectorAll('.icons__trash-bin');
 
-  for (let i = 0; i < trashBins.length; i++) {
-    trashBins[i].onclick = function () {
-      comments[i].remove();
+  for (let i = 0; i < elTrashBins.length; i++) {
+    elTrashBins[i].onclick = function () {
+      elComments[i].remove();
     }
   }
 }
 
 function likeComment() {
-  const likeHearts = document.querySelectorAll('.icons__heart'),
-    likeCounts = document.querySelectorAll('.sticker');
+  const elLikeHearts = document.querySelectorAll('.icons__heart'),
+    elLikeCounts = document.querySelectorAll('.sticker');
 
-  likeHearts.forEach((heart, index) => {
+  elLikeHearts.forEach((heart, index) => {
     heart.onclick = function () {
       this.classList.toggle("is-active");
-      const current = +likeCounts[index].innerHTML;
+      const current = +elLikeCounts[index].innerHTML;
       const inc = heart.classList.contains("is-active") ? 1 : -1;
-      likeCounts[index].innerHTML = current + inc;
-      this.classList.contains("is-active") ? likeCounts[index].style.display = "flex" : likeCounts[index].style.display = "none";
+      elLikeCounts[index].innerHTML = current + inc;
+      this.classList.contains("is-active") ? elLikeCounts[index].style.display = "flex" : elLikeCounts[index].style.display = "none";
     }
   });
 }
@@ -141,7 +138,6 @@ function formValidation(userName, commentText) {
         removeError(input);
       }
     }
-
   }
 
   return result;
@@ -192,5 +188,21 @@ function getDate(commentDate) {
 function addLeadingZero(num) {
   return (num < 10) ? '0' + num : '' + num;
 }
+
+
+function submitOnEnter(event) {
+  if (event.keyCode === 13) {
+    if (!event.repeat) {
+      const newEvent = new Event("submit", { cancelable: true });
+      event.target.form.dispatchEvent(newEvent);
+    }
+
+    event.preventDefault();
+  }
+}
+
+document.querySelector('#textarea').addEventListener('keypress', submitOnEnter);
+
+
 
 
