@@ -74,6 +74,8 @@ function addComment(userName, commentText, commentDate) {
         </li>
     </ul>`;
   divWrapper.append(divIcons);
+
+  return li;
 }
 
 function removeComment() {
